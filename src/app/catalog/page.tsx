@@ -1,4 +1,4 @@
-import ProductCategoryCard from "../components/ProductCategoryCard";
+import ProductCategoryCard from "@/components/ProductCategoryCard";
 
 const categories = [
   { title: "Котлы", image: "/images/boiler.jpg" },
@@ -16,12 +16,10 @@ const categories = [
   { title: "Крепежи и аксессуары", image: "/images/accessories.jpg" },
 ];
 
-export default function Home() {
+export default function Catalog() {
   return (
     <>
-      <h1 className="text-center">СанТехников: ключ к идеальной сантехнике!</h1>
-      <p className="text-center">Широкий выбор инженерной сантехники и оборудования для вашего дома и бизнеса.</p>
-      <h2 className="mt-5 mb-4">Каталог товаров</h2>
+      <h2 className="mb-4">Каталог товаров</h2>
       <div className="row">
         {categories.map((category) => (
           <ProductCategoryCard key={category.title} {...category} />
