@@ -40,6 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="ru">
       <head>
         {/* SEO meta */}
+        <meta name="google-site-verification" content="Fqbiv7jZRZqiqy5dZIzYo7pY16KbDMdDqAptD1kMQig" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="robots" content="index, follow" />
         <link rel="alternate" href="https://santexnikov.ru/" hrefLang="ru" />
