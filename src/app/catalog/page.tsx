@@ -1,4 +1,12 @@
+// app/catalog/page.tsx
+import type { Metadata } from "next";
 import ProductCategoryCard from "@/components/ProductCategoryCard";
+
+export const metadata: Metadata = {
+  title: "Каталог инженерной сантехники | Santexnikov",
+  description:
+    "Каталог товаров: котлы, водонагреватели, трубы, фитинги, насосы, радиаторы, фильтры и другие инженерные решения для водоснабжения и отопления.",
+};
 
 const categories = [
   { title: "Котлы", image: "/images/boiler.jpg" },
