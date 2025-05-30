@@ -7,8 +7,17 @@ interface ProductCategoryCardProps {
 }
 
 export default function ProductCategoryCard({ title, image }: ProductCategoryCardProps) {
+  const clickHandler = () => {
+    window.dataLayer?.push({
+      event: "categoryClick",
+      eventCategory: "Категория",
+      eventAction: "Клик по категории",
+      eventLabel: title,
+    });
+  };
+
   return (
-    <div className="col-12 col-md-3 mb-4">
+    <div className="col-12 col-md-3 mb-4" onClick={clickHandler} style={{ cursor: "pointer" }}>
       <div
         className="card h-100 d-flex flex-column border-0 shadow-sm rounded-3"
         style={{ transition: "transform 0.2s" }}
