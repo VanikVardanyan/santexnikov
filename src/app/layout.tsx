@@ -1,5 +1,6 @@
 // app/layout.tsx
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
 import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "../components/Footer";
