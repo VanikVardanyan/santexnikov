@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Product, getProductImage, getProductTitle, getProductDescription } from "@/lib/data";
+import { gaEvent } from "@/components/Analytics";
 
 interface ProductModalProps {
   product: Product | null;
@@ -139,7 +140,11 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
             <button type="button" className="btn btn-secondary" onClick={onClose}>
               Закрыть
             </button>
-            <button type="button" className="btn btn-primary">
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => gaEvent("order_click", { product_code: product["Код"] })}
+            >
               Заказать
             </button>
             <a
@@ -147,6 +152,7 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
               className="btn btn-outline-primary"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => gaEvent("product_details_click", { product_code: product["Код"] })}
             >
               Подробнее
             </a>

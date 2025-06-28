@@ -5,6 +5,7 @@ import ProductModal from "../ProductModal";
 import AdvancedPagination from "../AdvancedPagination";
 import Loader from "../Loader";
 import { Product } from "@/lib/data";
+import { gaEvent } from "@/components/Analytics";
 
 interface ProductListProps {
   categoryId: string;
@@ -94,6 +95,7 @@ export default function ProductList({ categoryId, categoryTitle }: ProductListPr
   }, [categoryId, currentPage, limit, searchTerm, sortBy, sortOrder]);
 
   const handleProductClick = (product: Product) => {
+    gaEvent("product_modal_open", { product_code: product["Код"] });
     setSelectedProduct(product);
     setIsModalOpen(true);
   };
@@ -104,11 +106,13 @@ export default function ProductList({ categoryId, categoryTitle }: ProductListPr
   };
 
   const handlePageChange = (page: number) => {
+    gaEvent("pagination_click", { page });
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleLimitChange = (newLimit: number) => {
+    gaEvent("change_items_per_page", { limit: newLimit });
     setLimit(newLimit);
   };
 
@@ -169,7 +173,10 @@ export default function ProductList({ categoryId, categoryTitle }: ProductListPr
                   className="form-control"
                   placeholder="Поиск товаров..."
                   value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
+                  onChange={(e) => {
+                    setSearchTerm(e.target.value);
+                    gaEvent("search", { query: e.target.value });
+                  }}
                 />
               </div>
               {/* Sort */}
@@ -177,7 +184,10 @@ export default function ProductList({ categoryId, categoryTitle }: ProductListPr
                 <select
                   className="form-select"
                   value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value as "name" | "manufacturer" | "code")}
+                  onChange={(e) => {
+                    setSortBy(e.target.value as "name" | "manufacturer" | "code");
+                    gaEvent("sort_change", { sortBy: e.target.value });
+                  }}
                   style={{ minWidth: "140px" }}
                 >
                   <option value="name">По названию</option>
@@ -186,7 +196,10 @@ export default function ProductList({ categoryId, categoryTitle }: ProductListPr
                 </select>
                 <button
                   className="btn btn-outline-secondary"
-                  onClick={() => setSortOrder(sortOrder === "asc" ? "desc" : "asc")}
+                  onClick={() => {
+                    setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+                    gaEvent("sort_order_toggle", { sortOrder: sortOrder === "asc" ? "desc" : "asc" });
+                  }}
                   title={sortOrder === "asc" ? "По убыванию" : "По возрастанию"}
                 >
                   <i className={`bi bi-sort-${sortOrder === "asc" ? "up" : "down"}`}></i>

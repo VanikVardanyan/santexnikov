@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "../components/Footer";
 import Script from "next/script";
+import Analytics from "@/components/Analytics";
 
 const GTM_ID = "GTM-PTQPDQ7X";
 
@@ -77,6 +78,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main className="container-fluid flex-grow-1 px-4 pt-5 mt-5">{children}</main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
